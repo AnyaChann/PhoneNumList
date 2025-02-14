@@ -60,6 +60,7 @@
         </c:otherwise>
     </c:choose>
     <a href="addphone.jsp" class="btn btn-primary mt-3">Add New Phone</a>
+    <%-- <a href="phone-servlet?action=reset" class="btn btn-secondary mt-3">Reset Auto Increment</a> --%>
 
     <!-- Delete Confirmation Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

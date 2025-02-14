@@ -22,6 +22,9 @@ public class PhoneService {
 
     public void deletePhone(int id) {
         phoneDAO.deletePhone(id);
+        if (phoneDAO.getAllPhones().isEmpty()) {
+            resetAutoIncrement();
+        }
     }
 
     public void updatePhone(Phone phone) {
@@ -30,5 +33,9 @@ public class PhoneService {
 
     public Phone getPhoneById(int id) {
         return phoneDAO.getPhoneById(id);
+    }
+
+    public void resetAutoIncrement() {
+        phoneDAO.resetAutoIncrement();
     }
 }

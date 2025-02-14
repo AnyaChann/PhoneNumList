@@ -94,4 +94,14 @@ public class PhoneDAO {
         }
         return null;
     }
+
+    public void resetAutoIncrement() {
+        String sql = "ALTER TABLE Phone AUTO_INCREMENT = 1";
+        try (Connection connection = DatabaseUtil.getConnection();
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

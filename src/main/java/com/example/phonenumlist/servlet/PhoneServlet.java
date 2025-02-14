@@ -1,8 +1,5 @@
 package com.example.phonenumlist.servlet;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.example.phonenumlist.model.Phone;
 import com.example.phonenumlist.service.PhoneService;
 
@@ -11,6 +8,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "phoneServlet", value = "/phone-servlet")
 public class PhoneServlet extends HttpServlet {
@@ -75,6 +75,8 @@ public class PhoneServlet extends HttpServlet {
             deletePhone(request, response);
         } else if ("edit".equals(action)) {
             showEditForm(request, response);
+        } else if ("reset".equals(action)) {
+            resetAutoIncrement(request, response);
         } else {
             listPhones(request, response);
         }
@@ -97,5 +99,10 @@ public class PhoneServlet extends HttpServlet {
         List<Phone> phoneList = phoneService.getAllPhones();
         request.setAttribute("phoneList", phoneList);
         request.getRequestDispatcher("listphone.jsp").forward(request, response);
+    }
+
+    private void resetAutoIncrement(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        phoneService.resetAutoIncrement();
+        response.sendRedirect("phone-servlet");
     }
 }
