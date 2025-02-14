@@ -4,27 +4,9 @@
 <%@ page import="javax.servlet.*" %>
 <%@ page import="javax.servlet.http.*" %>
 <%
-    PhoneService phoneService = new PhoneService();
-    String message = "";
-    if (request.getMethod().equalsIgnoreCase("POST")) {
-        String id = request.getParameter("id");
-        String name = request.getParameter("name");
-        String brand = request.getParameter("brand");
-        String price = request.getParameter("price");
-        String description = request.getParameter("description");
-
-        if (id.isEmpty() || name.isEmpty() || brand.isEmpty() || price.isEmpty() || description.isEmpty()) {
-            message = "All fields are required.";
-        } else {
-            Phone phone = new Phone();
-            phone.setId(Integer.parseInt(id));
-            phone.setName(name);
-            phone.setBrand(brand);
-            phone.setPrice(Double.parseDouble(price));
-            phone.setDescription(description);
-            phoneService.savePhone(phone);
-            response.sendRedirect("listphone.jsp");
-        }
+    String message = (String) request.getAttribute("message");
+    if (message == null) {
+        message = "";
     }
 %>
 <!DOCTYPE html>
@@ -37,7 +19,7 @@
 <% if (!message.isEmpty()) { %>
     <p style="color:red;"><%= message %></p>
 <% } %>
-<form action="addphone.jsp" method="post">
+<form action="phone-servlet" method="post">
     <label for="id">ID:</label><br>
     <input type="text" id="id" name="id"><br><br>
     

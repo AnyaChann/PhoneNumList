@@ -2,17 +2,6 @@
 <%@ page import="com.example.phonenumlist.model.Phone" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%
-    PhoneService phoneService = new PhoneService();
-    List<Phone> phoneList = null;
-    try {
-        phoneList = phoneService.getAllPhones();
-        request.setAttribute("phoneList", phoneList);
-    } catch (Exception e) {
-        e.printStackTrace(out);
-    }
-%>
-
 <!DOCTYPE html>
 <html>
 <head>

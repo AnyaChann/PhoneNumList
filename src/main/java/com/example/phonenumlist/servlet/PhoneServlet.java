@@ -37,7 +37,7 @@ public class PhoneServlet extends HttpServlet {
 
         phoneService.addPhone(phone);
 
-        response.sendRedirect("listphone.jsp");
+        response.sendRedirect("phone-servlet");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
