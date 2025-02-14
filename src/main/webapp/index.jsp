@@ -7,6 +7,6 @@
 </head>
 <body class="container">
     <h1 class="mt-5">Welcome to the Phone List Application</h1>
-    <a href="listphone.jsp" class="btn btn-primary mt-3">View Phone List</a>
+    <a href="phone-servlet" class="btn btn-primary mt-3">View Phone List</a>
 </body>
 </html>
