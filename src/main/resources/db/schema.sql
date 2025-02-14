@@ -1,4 +1,5 @@
 USE phonelist;
+SELECT * FROM Phone;
 
 CREATE TABLE Phone (
     id INT PRIMARY KEY AUTO_INCREMENT,

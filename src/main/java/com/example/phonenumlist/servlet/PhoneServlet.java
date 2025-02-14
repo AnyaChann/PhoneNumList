@@ -39,6 +39,7 @@ public class PhoneServlet extends HttpServlet {
             phone.setPrice(Double.parseDouble(price));
             phone.setDescription(description);
             phoneService.addPhone(phone);
+            System.out.println("Phone added: " + phone);
             response.sendRedirect("phone-servlet");
         }
     }
