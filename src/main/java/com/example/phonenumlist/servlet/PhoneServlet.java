@@ -1,6 +1,7 @@
 package com.example.phonenumlist.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.example.phonenumlist.model.Phone;
 import com.example.phonenumlist.service.PhoneService;
@@ -40,6 +41,8 @@ public class PhoneServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Handle GET requests if needed
+        List<Phone> phoneList = phoneService.getAllPhones();
+        request.setAttribute("phoneList", phoneList);
+        request.getRequestDispatcher("listphone.jsp").forward(request, response);
     }
 }
