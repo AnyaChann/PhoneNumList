@@ -6,35 +6,39 @@
 <html>
 <head>
     <title>Phone List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>List of Phones</h1>
+<body class="container">
+    <h1 class="mt-5">List of Phones</h1>
     <c:choose>
         <c:when test="${empty phoneList}">
-            <p>Phone List is empty!</p>
+            <p class="text-warning">Phone List is empty!</p>
         </c:when>
         <c:otherwise>
-            <table border="1">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Brand</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                </tr>
-                <c:forEach var="phone" items="${phoneList}">
+            <table class="table table-bordered mt-3">
+                <thead>
                     <tr>
-                        <td>${phone.id}</td>
-                        <td>${phone.name}</td>
-                        <td>${phone.brand}</td>
-                        <td>${phone.price}</td>
-                        <td>${phone.description}</td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>Description</th>
                     </tr>
-                </c:forEach>
+                </thead>
+                <tbody>
+                    <c:forEach var="phone" items="${phoneList}">
+                        <tr>
+                            <td>${phone.id}</td>
+                            <td>${phone.name}</td>
+                            <td>${phone.brand}</td>
+                            <td>${phone.price}</td>
+                            <td>${phone.description}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
             </table>
         </c:otherwise>
     </c:choose>
-    <br>
-    <a href="addphone.jsp">Add New Phone</a>
+    <a href="addphone.jsp" class="btn btn-primary mt-3">Add New Phone</a>
 </body>
 </html>

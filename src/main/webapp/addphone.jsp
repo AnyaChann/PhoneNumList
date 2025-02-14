@@ -13,33 +13,38 @@
 <html>
 <head>
     <title>Add Phone</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<h2>Add Phone</h2>
+<body class="container">
+<h2 class="mt-5">Add Phone</h2>
 <% if (!message.isEmpty()) { %>
-    <p style="color:red;"><%= message %></p>
+    <p class="text-danger"><%= message %></p>
 <% } %>
-<form action="phone-servlet" method="post">
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name"><br><br>
-    
-    <label for="brand">Brand:</label><br>
-    <select id="brand" name="brand">
-        <option value="">Select Brand</option>
-        <option value="Apple">Apple</option>
-        <option value="Samsung">Samsung</option>
-        <option value="Nokia">Nokia</option>
-        <option value="Others">Others</option>
-    </select><br><br>
-    
-    <label for="price">Price:</label><br>
-    <input type="text" id="price" name="price"><br><br>
-    
-    <label for="description">Description:</label><br>
-    <textarea id="description" name="description"></textarea><br><br>
-    
-    <input type="submit" value="Submit">
-    <input type="reset" value="Reset" onclick="clearForm()">
+<form action="phone-servlet" method="post" class="mt-3">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="brand">Brand:</label>
+        <select id="brand" name="brand" class="form-control">
+            <option value="">Select Brand</option>
+            <option value="Apple">Apple</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Nokia">Nokia</option>
+            <option value="Others">Others</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-secondary" onclick="clearForm()">Reset</button>
 </form>
 
 <script>
