@@ -30,7 +30,8 @@ PhoneNumList
 │   │   │               ├── servlet
 │   │   │               │   └── PhoneServlet.java
 │   │   │               └── util
-│   │   │                   └── DatabaseUtil.java
+│   │   │                   ├── DatabaseUtil.java
+|   |   |                   └── DatabaseUtilTest.java
 │   │   └── resources
 │   │       └── db
 │   │           └── schema.sql
