@@ -22,4 +22,17 @@ public class DatabaseUtil {
             }
         }
     }
+
+    // Test method to check database connection
+    public static void testConnection() {
+        try (Connection connection = getConnection()) {
+            if (connection != null) {
+                System.out.println("Database connected successfully!");
+            } else {
+                System.out.println("Failed to connect to the database.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
