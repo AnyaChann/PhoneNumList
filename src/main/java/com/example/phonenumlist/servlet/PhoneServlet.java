@@ -22,22 +22,25 @@ public class PhoneServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
         String name = request.getParameter("name");
         String brand = request.getParameter("brand");
         String price = request.getParameter("price");
         String description = request.getParameter("description");
 
-        Phone phone = new Phone();
-        phone.setId(Integer.parseInt(id));
-        phone.setName(name);
-        phone.setBrand(brand);
-        phone.setPrice(Double.parseDouble(price));
-        phone.setDescription(description);
-
-        phoneService.addPhone(phone);
-
-        response.sendRedirect("phone-servlet");
+        String message = "";
+        if (name.isEmpty() || brand.isEmpty() || price.isEmpty() || description.isEmpty()) {
+            message = "All fields are required.";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("addphone.jsp").forward(request, response);
+        } else {
+            Phone phone = new Phone();
+            phone.setName(name);
+            phone.setBrand(brand);
+            phone.setPrice(Double.parseDouble(price));
+            phone.setDescription(description);
+            phoneService.addPhone(phone);
+            response.sendRedirect("phone-servlet");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

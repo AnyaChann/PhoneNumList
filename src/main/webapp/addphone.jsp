@@ -20,9 +20,6 @@
     <p style="color:red;"><%= message %></p>
 <% } %>
 <form action="phone-servlet" method="post">
-    <label for="id">ID:</label><br>
-    <input type="text" id="id" name="id"><br><br>
-    
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name"><br><br>
     
@@ -47,7 +44,6 @@
 
 <script>
     function clearForm() {
-        document.getElementById("id").value = "";
         document.getElementById("name").value = "";
         document.getElementById("brand").selectedIndex = 0;
         document.getElementById("price").value = "";

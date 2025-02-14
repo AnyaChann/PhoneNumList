@@ -1,23 +1,26 @@
 package com.example.phonenumlist.dao;
 
-import com.example.phonenumlist.model.Phone;
-import com.example.phonenumlist.util.DatabaseUtil;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.phonenumlist.model.Phone;
+import com.example.phonenumlist.util.DatabaseUtil;
 
 public class PhoneDAO {
 
     public void savePhone(Phone phone) {
-        String sql = "INSERT INTO Phone (id, name, brand, price, description) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Phone (name, brand, price, description) VALUES (?, ?, ?, ?)";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, phone.getId());
-            statement.setString(2, phone.getName());
-            statement.setString(3, phone.getBrand());
-            statement.setDouble(4, phone.getPrice());
-            statement.setString(5, phone.getDescription());
+            statement.setString(1, phone.getName());
+            statement.setString(2, phone.getBrand());
+            statement.setDouble(3, phone.getPrice());
+            statement.setString(4, phone.getDescription());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
