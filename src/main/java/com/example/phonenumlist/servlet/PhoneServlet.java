@@ -22,6 +22,15 @@ public class PhoneServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if ("edit".equals(action)) {
+            updatePhone(request, response);
+        } else {
+            addPhone(request, response);
+        }
+    }
+
+    private void addPhone(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String brand = request.getParameter("brand");
         String price = request.getParameter("price");
@@ -39,12 +48,52 @@ public class PhoneServlet extends HttpServlet {
             phone.setPrice(Double.parseDouble(price));
             phone.setDescription(description);
             phoneService.addPhone(phone);
-            System.out.println("Phone added: " + phone);
             response.sendRedirect("phone-servlet");
         }
     }
 
+    private void updatePhone(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String brand = request.getParameter("brand");
+        String price = request.getParameter("price");
+        String description = request.getParameter("description");
+
+        Phone phone = new Phone();
+        phone.setId(id);
+        phone.setName(name);
+        phone.setBrand(brand);
+        phone.setPrice(Double.parseDouble(price));
+        phone.setDescription(description);
+        phoneService.updatePhone(phone);
+        response.sendRedirect("phone-servlet");
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if ("delete".equals(action)) {
+            deletePhone(request, response);
+        } else if ("edit".equals(action)) {
+            showEditForm(request, response);
+        } else {
+            listPhones(request, response);
+        }
+    }
+
+    private void deletePhone(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        phoneService.deletePhone(id);
+        response.sendRedirect("phone-servlet");
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Phone existingPhone = phoneService.getPhoneById(id);
+        request.setAttribute("phone", existingPhone);
+        request.getRequestDispatcher("editphone.jsp").forward(request, response);
+    }
+
+    private void listPhones(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Phone> phoneList = phoneService.getAllPhones();
         request.setAttribute("phoneList", phoneList);
         request.getRequestDispatcher("listphone.jsp").forward(request, response);

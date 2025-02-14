@@ -47,4 +47,51 @@ public class PhoneDAO {
         }
         return phones;
     }
+
+    public void deletePhone(int id) {
+        String sql = "DELETE FROM Phone WHERE id = ?";
+        try (Connection connection = DatabaseUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePhone(Phone phone) {
+        String sql = "UPDATE Phone SET name = ?, brand = ?, price = ?, description = ? WHERE id = ?";
+        try (Connection connection = DatabaseUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, phone.getName());
+            statement.setString(2, phone.getBrand());
+            statement.setDouble(3, phone.getPrice());
+            statement.setString(4, phone.getDescription());
+            statement.setInt(5, phone.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Phone getPhoneById(int id) {
+        String sql = "SELECT * FROM Phone WHERE id = ?";
+        try (Connection connection = DatabaseUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Phone phone = new Phone();
+                phone.setId(resultSet.getInt("id"));
+                phone.setName(resultSet.getString("name"));
+                phone.setBrand(resultSet.getString("brand"));
+                phone.setPrice(resultSet.getDouble("price"));
+                phone.setDescription(resultSet.getString("description"));
+                return phone;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

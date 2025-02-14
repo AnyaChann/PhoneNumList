@@ -19,4 +19,16 @@ public class PhoneService {
     public List<Phone> getAllPhones() {
         return phoneDAO.getAllPhones();
     }
+
+    public void deletePhone(int id) {
+        phoneDAO.deletePhone(id);
+    }
+
+    public void updatePhone(Phone phone) {
+        phoneDAO.updatePhone(phone);
+    }
+
+    public Phone getPhoneById(int id) {
+        return phoneDAO.getPhoneById(id);
+    }
 }
