@@ -1,11 +1,14 @@
 # PhoneNumList Project
 
 ## Overview
-The PhoneNumList project is a web application that allows users to manage a list of phone information. Users can add new phone entries through a form and view the list of existing phones. The application is built using Java, JSP, and a relational database.
+The PhoneNumList project is a web application that allows users to manage a list of phone information. Users can add new phone entries through a form, view the list of existing phones, edit phone details, and delete phone entries. The application is built using Java, JSP, and a relational database.
 
 ## Features
-- Add new phone details including ID, Name, Brand, Price, and Description.
+- Add new phone details including Name, Brand, Price, and Description.
 - View a list of all phones stored in the database.
+- Edit existing phone details.
+- Delete phone entries.
+- Automatic reset of the `AUTO_INCREMENT` value when the list is empty.
 - Input validation for form fields.
 - Reset button to clear all input fields in the form.
 
@@ -33,10 +36,13 @@ PhoneNumList
 │   │           └── schema.sql
 │   └── webapp
 │       ├── addphone.jsp
-│       └── listphone.jsp
+│       ├── listphone.jsp
+|       ├── editphone.jsp
+|       └── index.jsp
 ├── pom.xml
 └── README.md
 ```
+
 
 ## Setup Instructions
 1. **Clone the repository**: Use `git clone <repository-url>` to clone the project to your local machine.
@@ -52,6 +58,8 @@ PhoneNumList
 ## Usage
 - Navigate to the `addphone.jsp` page to input new phone details.
 - After submitting the form, you will be redirected to the `listphone.jsp` page where you can view all the phones stored in the database.
+- Use the `Edit` button to modify existing phone details.
+- Use the `Delete` button to remove phone entries. The `AUTO_INCREMENT` value will be reset automatically if the list becomes empty.
 
 ## Contributing
 Contributions are welcome! Please submit a pull request or open an issue for any enhancements or bug fixes.
